@@ -91,8 +91,10 @@ public class TestCredicard {
 			Payment payment = new Payment();
 			payment.setPayer(payer);
 			payment.setIntent("sale");
+			payment.setTransactions(transactions);
+			
 			Payment createdPayment = payment.create(apiContext);
-			  
+			System.out.println(createdPayment);
 			  System.out.println("Created payment with id = " + createdPayment.getId());
 			} catch (PayPalRESTException e) {
 			  System.err.println(e.getDetails());
