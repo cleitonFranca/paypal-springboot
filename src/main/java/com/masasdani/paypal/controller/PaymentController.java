@@ -1,5 +1,8 @@
 package com.masasdani.paypal.controller;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.masasdani.paypal.config.PaypalPaymentIntent;
 import com.masasdani.paypal.config.PaypalPaymentMethod;
@@ -57,6 +61,23 @@ public class PaymentController {
 			log.error(e.getMessage());
 		}
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/nip")
+	@ResponseBody
+	public String nip(@RequestParam Map<String, String> allRequestParams) {
+		
+		
+		for (Entry<String, String> i : allRequestParams.entrySet()) {
+			
+			System.out.println(i.getKey()+" ==> "+i.getValue());
+			
+		}
+		
+		
+		
+		return allRequestParams.toString();
+		
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = PAYPAL_CANCEL_URL)
